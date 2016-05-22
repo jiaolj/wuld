@@ -97,6 +97,75 @@ var Base = (function(){
 		rData : _config.index.rData,
 		bind : _config.index.bind
 	};
+	_config.blog = {
+		url : '/shuoshuo',
+		tempUrl : 'blog.html',
+		suc : function(){
+			_obj.query();
+		},
+		o : 'dl.blog',
+		data : {},
+		temp : Tmp.blog,
+		turn : 1,
+		tools : {
+			getImages : function(pic,id){
+				var obj = this,htm = '',plist = [];
+				if(pic.length>0){
+					plist = pic.split(',');
+					$.each(plist,function(k,i){
+						var src = 'http://www.chawuliu.com/uploads/'+i;
+						var img = new Image();
+						img.src = src;
+						img.onload = function(){
+							var o1 = $('.img[i="'+id+'"] img').eq(k);
+							o1.attr('src',src)
+							if(img.width>img.height) o1.css('height','100%');
+							else o1.css('width','100%');
+						};
+						//if(k<3) 
+						htm += '<span><img class="jui-auto-img" src="" /></span>';
+					})
+					htm += '<br class="cb" />';
+				}
+				return htm;
+			},
+			getViewers : function(pic){
+				var htm = '';
+				for(var p in pic) htm += '<img src="'+pic[p].headimgurl+'" />';
+				return htm;
+			},
+		},
+		rData : function(d,j){
+			var obj = this;
+			return d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.viewers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
+		},
+		bind : function(obj){
+			obj.find('dt').last().find('a.click').click(function(){
+				var o = $(this),
+					tp = o.attr('tp'),
+					dt = o.parent().parent()
+				;
+				if(tp=='like'){
+					var numo = o.find('span'),
+						num = parseInt(numo.text())
+					;
+					$.ajax({
+						url: '/shuoshuo/like/' + dt.attr('did'),
+						data:{},
+						dataType: 'json',
+						success : function(dd) {
+							num ++;
+							if(dd.info=='点赞成功') numo.text(num);
+							alert(dd.info);
+						}
+					})
+				}
+				else if(tp='talk'){
+					location.href = $(this).attr('htm');
+				}
+			})
+		}
+	};
 	_config.goods = {
 		url : '/viewgoods',
 		tempUrl : 'goods.html',
@@ -233,6 +302,9 @@ var Base = (function(){
 	};
 	_config.my = {
 		tempUrl : 'my.html',
+	};
+	_config.price = {
+		tempUrl : 'price.html',
 	};
 	return {
 		mvvm : function(object){
@@ -406,7 +478,7 @@ var Base = (function(){
 					data : atv.data,
 					dataType : 'json',
 					success : function(back){
-						var lst = back.list || back.page_list;
+						var lst = back.list || back.page_list || back;
 						if(lst.length>0){
 							for(var i=0;i<lst.length;i++) {
 								obj.append(rData(q.tmp || atv.temp,lst[i]));

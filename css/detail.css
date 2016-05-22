@@ -105,13 +105,22 @@
   padding-top: 0.16rem;
 }
 .detail .send2 p.two a {
-  display: inline-block;
+  display: block;
   color: #ffffff;
   line-height: 0.17rem;
-  padding: 0 0.09rem;
+  width: 50%;
+  float: left;
+  position: relative;
+  text-align: center;
 }
-.detail .send2 p.two a.line {
-  border-right: 1px solid #ffffff;
+.detail .send2 p.two a.line:before {
+  content: '';
+  background: #ffffff;
+  height: 0.18rem;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 0.01rem;
 }
 .detail .head {
   text-align: center;

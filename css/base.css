@@ -216,13 +216,22 @@
   padding-top: 0.16rem;
 }
 .detail .send2 p.two a {
-  display: inline-block;
+  display: block;
   color: #ffffff;
   line-height: 0.17rem;
-  padding: 0 0.09rem;
+  width: 50%;
+  float: left;
+  position: relative;
+  text-align: center;
 }
-.detail .send2 p.two a.line {
-  border-right: 1px solid #ffffff;
+.detail .send2 p.two a.line:before {
+  content: '';
+  background: #ffffff;
+  height: 0.18rem;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 0.01rem;
 }
 .detail .head {
   text-align: center;
@@ -458,6 +467,116 @@
 .detail .foot-tserver {
   margin-top: 0.2rem;
   margin-bottom: 0.6rem;
+}
+.blog dl.blog {
+  font-size: 0.14rem;
+  margin-bottom: 0.48rem;
+}
+.blog dl.blog dt {
+  padding: 0.1rem;
+  background: #ffffff;
+  margin-bottom: 0.21rem;
+}
+.blog dl.blog dt .photo {
+  width: 0.43rem;
+  margin-right: 0.1rem;
+  position: relative;
+}
+.blog dl.blog dt .photo img.logo {
+  border-radius: 50%;
+  width: 0.43rem;
+  height: 0.43rem;
+}
+.blog dl.blog dt .photo img.vip {
+  width: 0.16rem;
+  height: 0.16rem;
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+}
+.blog dl.blog dt .tit {
+  width: 2.47rem;
+  font-weight: 900;
+  font-size: 0.16rem;
+  line-height: 0.23rem;
+}
+.blog dl.blog dt .tit p.time {
+  font-size: 0.12rem;
+  color: #cccccc;
+  line-height: 0.19rem;
+}
+.blog dl.blog dt .text {
+  border-radius: 0.1rem;
+  background: #f4f4f4;
+  padding: 0.1rem;
+  margin-top: 0.1rem;
+}
+.blog dl.blog dt .text .title {
+  color: #888888;
+  line-height: 0.18rem;
+}
+.blog dl.blog dt .text .img {
+  margin-top: 0.1rem;
+  margin-bottom: 0.05rem;
+}
+.blog dl.blog dt .text .img > span {
+  display: block;
+  float: left;
+  width: 0.89rem;
+  height: 0.87rem;
+  overflow: hidden;
+  margin-bottom: 0.05rem;
+}
+.blog dl.blog dt .text .img > span:nth-child(n + 2) {
+  margin-left: 0.05rem;
+}
+.blog dl.blog dt .see {
+  margin-top: 0.1rem;
+  padding-bottom: 0.08rem;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 0.15rem;
+}
+.blog dl.blog dt .see > img {
+  width: 0.22rem;
+  height: 0.22rem;
+  margin-right: 0.08rem;
+  border-radius: 50%;
+}
+.blog dl.blog dt .see .frt {
+  color: #999999;
+}
+.blog dl.blog dt .see .frt img {
+  height: 0.15rem;
+  position: relative;
+  left: -0.03rem;
+}
+.blog dl.blog dt .see .frt span {
+  font-size: 0.11rem;
+  position: relative;
+  top: 0.03rem;
+}
+.blog dl.blog dt .action {
+  padding-top: 0.1rem;
+  line-height: 0.3rem;
+}
+.blog dl.blog dt .action > img,
+.blog dl.blog dt .action a > img {
+  width: 0.14rem;
+  margin-right: 0.05rem;
+}
+.blog dl.blog dt .action > span,
+.blog dl.blog dt .action a > span {
+  color: #999999;
+  font-size: 0.1rem;
+  margin-right: 0.1rem;
+  position: relative;
+  top: 0.02rem;
+}
+.blog dl.blog dt .action .frt {
+  width: 0.83rem;
+}
+.blog dl.blog dt .action .frt img {
+  width: 100%;
 }
 html {
   height: 100%;
@@ -755,26 +874,26 @@ footer .line img {
   left: 0;
   width: 100%;
 }
-footer dl {
+footer dl.old {
   font-size: 0.1rem;
 }
-footer dl dt {
+footer dl.old dt {
   float: left;
   width: 20%;
   position: relative;
   cursor: pointer;
 }
-footer dl dt div {
+footer dl.old dt div {
   height: 0.2525rem;
 }
-footer dl dt div img {
+footer dl.old dt div img {
   margin-top: 0.04rem;
 }
-footer dl dt div.txt {
+footer dl.old dt div.txt {
   line-height: 0.21rem;
   color: #999999;
 }
-footer dl dt.send:before {
+footer dl.old dt.send:before {
   content: '';
   position: absolute;
   left: 0.1rem;
@@ -784,42 +903,109 @@ footer dl dt.send:before {
   background: #ffffff;
   top: -0.045rem;
 }
-footer dl dt.send img {
+footer dl.old dt.send img {
   width: 0.38rem;
   height: 0.38rem;
   border-radius: 50%;
   position: relative;
   z-index: 1;
 }
-footer dl dt span {
+footer dl.old dt span {
   clear: left;
 }
-footer dl dt .icon {
+footer dl.old dt .icon {
   height: 0.22rem;
   position: relative;
   top: 0.02rem;
 }
-footer dl dt .cut {
+footer dl.old dt .cut {
   position: absolute;
   height: 0.32rem;
   top: 0.065rem;
 }
-footer dl dt .cut.l {
+footer dl.old dt .cut.l {
   left: 0;
 }
-footer dl dt .cut.r {
+footer dl.old dt .cut.r {
   right: 0%;
 }
-footer dl dt img.open {
+footer dl.old dt img.open {
   display: none;
 }
-footer dl dt img.close {
+footer dl.old dt img.close {
   display: inline;
 }
-footer dl dt.active img.open {
+footer dl.old dt.active img.open {
   display: inline;
 }
-footer dl dt.active img.close {
+footer dl.old dt.active img.close {
+  display: none;
+}
+footer dl.new {
+  font-size: 0.1rem;
+}
+footer dl.new dt {
+  float: left;
+  width: 25%;
+  position: relative;
+  cursor: pointer;
+}
+footer dl.new dt div {
+  height: 0.2525rem;
+}
+footer dl.new dt div img {
+  margin-top: 0.04rem;
+}
+footer dl.new dt div.txt {
+  line-height: 0.21rem;
+  color: #999999;
+}
+footer dl.new dt.send:before {
+  content: '';
+  position: absolute;
+  left: 0.1rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #ffffff;
+  top: -0.045rem;
+}
+footer dl.new dt.send img {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+footer dl.new dt span {
+  clear: left;
+}
+footer dl.new dt .icon {
+  height: 0.22rem;
+  position: relative;
+  top: 0.02rem;
+}
+footer dl.new dt .cut {
+  position: absolute;
+  height: 0.32rem;
+  top: 0.065rem;
+}
+footer dl.new dt .cut.l {
+  left: 0;
+}
+footer dl.new dt .cut.r {
+  right: 0%;
+}
+footer dl.new dt img.open {
+  display: none;
+}
+footer dl.new dt img.close {
+  display: inline;
+}
+footer dl.new dt.active img.open {
+  display: inline;
+}
+footer dl.new dt.active img.close {
   display: none;
 }
 footer .consult {

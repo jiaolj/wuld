@@ -32,5 +32,27 @@ var Tmp = {
 			</div>\
 			<br class="cb" />\
 		</dt>\
+	',
+	blog : '\
+		<dt did="#id"> \
+			<div class="photo flt"><img class="logo" src="#headimgurl" /><img class="vip" src="img/blog/vip.png" /></div> \
+			<div class="tit flt"> \
+				<p>#nickname</p> \
+				<p class="time">#ctime</p> \
+			</div> \
+			<br class="cb"/> \
+			<div class="text"><a href="bdetail.html?id=#id"> \
+				<div class="title">#content</div> \
+				<div class="img" i="#ii">#pictures</div> \
+			</a></div> \
+			<div class="see"> \
+				#viewers \
+			</div> \
+			<div class="action"> \
+				<a class="click" tp="like"><img class="left" src="img/blog/like.png" /><span>#like_num</span></a> <img class="left" src="img/blog/talk.png" /><span>#comment_num</span> <img class="left" src="img/blog/share.png" /> \
+				<span class="frt"><a class="click" tp="talk" htm="mdetail.html?id=#user_id"><img src="img/blog/chat.png" /></a></span> \
+				<br class="cb"/> \
+			</div> \
+		</dt>\
 	'
 }
