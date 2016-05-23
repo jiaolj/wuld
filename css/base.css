@@ -84,9 +84,6 @@
   top: 1.22rem;
   font-size: 0.15rem;
 }
-.my dl {
-  padding-bottom: 0.7rem;
-}
 .my dl dt {
   width: 33%;
   float: left;
@@ -109,6 +106,11 @@
   height: 100%;
   right: 0%;
   top: 0%;
+}
+.my .contact {
+  text-align: center;
+  padding-top: 0.3rem;
+  padding-bottom: 0.6rem;
 }
 .detail .cover-page {
   position: fixed;
