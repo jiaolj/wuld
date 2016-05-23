@@ -1,0 +1,110 @@
+.blog dl.blog {
+  font-size: 0.14rem;
+  margin-bottom: 0.48rem;
+}
+.blog dl.blog dt {
+  padding: 0.1rem;
+  background: #ffffff;
+  margin-bottom: 0.21rem;
+}
+.blog dl.blog dt .photo {
+  width: 0.43rem;
+  margin-right: 0.1rem;
+  position: relative;
+}
+.blog dl.blog dt .photo img.logo {
+  border-radius: 50%;
+  width: 0.43rem;
+  height: 0.43rem;
+}
+.blog dl.blog dt .photo img.vip {
+  width: 0.16rem;
+  height: 0.16rem;
+  position: absolute;
+  bottom: 0;
+  right: 0%;
+}
+.blog dl.blog dt .tit {
+  width: 2.47rem;
+  font-weight: 900;
+  font-size: 0.16rem;
+  line-height: 0.23rem;
+}
+.blog dl.blog dt .tit p.time {
+  font-size: 0.12rem;
+  color: #cccccc;
+  line-height: 0.19rem;
+}
+.blog dl.blog dt .text {
+  border-radius: 0.1rem;
+  background: #f4f4f4;
+  padding: 0.1rem;
+  margin-top: 0.1rem;
+}
+.blog dl.blog dt .text .title {
+  color: #888888;
+  line-height: 0.18rem;
+}
+.blog dl.blog dt .text .img {
+  margin-top: 0.1rem;
+  margin-bottom: 0.05rem;
+}
+.blog dl.blog dt .text .img > span {
+  display: block;
+  float: left;
+  width: 0.89rem;
+  height: 0.87rem;
+  overflow: hidden;
+  margin-bottom: 0.05rem;
+}
+.blog dl.blog dt .text .img > span:nth-child(n + 2) {
+  margin-left: 0.05rem;
+}
+.blog dl.blog dt .see {
+  margin-top: 0.1rem;
+  padding-bottom: 0.08rem;
+  border-bottom: 1px solid #eeeeee;
+  line-height: 0.15rem;
+}
+.blog dl.blog dt .see > img {
+  width: 0.22rem;
+  height: 0.22rem;
+  margin-right: 0.08rem;
+  border-radius: 50%;
+}
+.blog dl.blog dt .see .frt {
+  color: #999999;
+}
+.blog dl.blog dt .see .frt img {
+  height: 0.15rem;
+  position: relative;
+  left: -0.03rem;
+}
+.blog dl.blog dt .see .frt span {
+  font-size: 0.11rem;
+  position: relative;
+  top: 0.03rem;
+}
+.blog dl.blog dt .action {
+  padding-top: 0.1rem;
+  line-height: 0.3rem;
+}
+.blog dl.blog dt .action > img,
+.blog dl.blog dt .action a > img {
+  width: 0.14rem;
+  margin-right: 0.05rem;
+}
+.blog dl.blog dt .action > span,
+.blog dl.blog dt .action a > span {
+  color: #999999;
+  font-size: 0.1rem;
+  margin-right: 0.1rem;
+  position: relative;
+  top: 0.02rem;
+}
+.blog dl.blog dt .action .frt {
+  width: 0.83rem;
+}
+.blog dl.blog dt .action .frt img {
+  width: 100%;
+}
