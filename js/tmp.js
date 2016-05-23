@@ -41,17 +41,15 @@ var Tmp = {
 				<p class="time">#ctime</p> \
 			</div> \
 			<br class="cb"/> \
-			<div class="text"><a href="bdetail.html?id=#id"> \
+			<div class="text">\
 				<div class="title">#content</div> \
 				<div class="img" i="#ii">#pictures</div> \
-			</a></div> \
+			</div> \
 			<div class="see"> \
 				#viewers \
 			</div> \
 			<div class="action"> \
 				<a class="click" tp="like"><img class="left" src="img/blog/like.png" /><span>#like_num</span></a> <img class="left" src="img/blog/talk.png" /><span>#comment_num</span> <img class="left" src="img/blog/share.png" /> \
-				<span class="frt"><a class="click" tp="talk" htm="mdetail.html?id=#user_id"><img src="img/blog/chat.png" /></a></span> \
-				<br class="cb"/> \
 			</div> \
 		</dt>\
 	'

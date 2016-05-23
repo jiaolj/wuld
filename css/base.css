@@ -640,20 +640,20 @@ content .head {
   line-height: 0.38rem;
   height: 0.38rem;
 }
-content .head a {
+content .head a.plt {
   position: absolute;
   left: 0.1rem;
   color: #ffffff;
   display: block;
   width: 0.5rem;
 }
-content .head a img.area {
+content .head a.plt img.area {
   height: 0.15rem;
   margin-right: 0.04rem;
   position: relative;
   top: -0.02rem;
 }
-content .head a span:after {
+content .head a.plt span:after {
   content: '';
   width: 0.07rem;
   height: 0.07rem;
@@ -672,6 +672,12 @@ content .head a span:after {
   top: 0.11rem;
   margin-left: 0.06rem;
 }
+content .head a.prt {
+  position: absolute;
+  right: 0.1rem;
+  color: #ffffff;
+  display: block;
+}
 content .head img.logo {
   height: 100%;
   position: relative;
@@ -679,7 +685,7 @@ content .head img.logo {
 }
 content .head b {
   position: absolute;
-  left: 0.8rem;
+  left: 0.75rem;
   top: -0.01rem;
 }
 content .head b input {
@@ -687,13 +693,113 @@ content .head b input {
   height: 0.18rem;
   font-size: 0.13rem;
   text-indent: 0.18rem;
-  width: 2rem;
+  width: 1.9rem;
 }
 content .head b img {
   position: absolute;
   height: 0.11rem;
   top: 0.14rem;
   left: 0.03rem;
+}
+content .head .searchBox {
+  background: #f4f4f4;
+  box-shadow: 0px 2px 12px #cccccc;
+  border: 1px solid #e9e9e9;
+  position: absolute;
+  top: 0.38rem;
+  width: 88%;
+  left: 5%;
+  padding: 1%;
+  color: #333333;
+  line-height: 0.26rem;
+  z-index: 9;
+  /*dl {
+				.bg(#fff);.brr(8rem);.mgbr(9rem);
+				dt {
+					.bdb(#f4f4f4);.ti(0.5em);
+				}
+			}*/
+}
+content .head .searchBox .title {
+  line-height: 0.24rem;
+}
+content .head .searchBox .words {
+  background: #ffffff;
+  border-radius: 0.04rem;
+}
+content .head .searchBox .words a {
+  display: block;
+  width: 33%;
+  float: left;
+  text-align: center;
+  border-right: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+content .head .searchBox .choiceCity {
+  top: 50rem;
+}
+content .head .searchBox .choiceCity a {
+  display: inline-block;
+}
+content .head .searchBox .choiceCity .city-title a {
+  padding: 0 0.03rem;
+  margin: 0 0.01rem;
+}
+content .head .searchBox .choiceCity .city-title a:hover {
+  background: #f1f8ff;
+}
+content .head .searchBox .choiceCity .city-ok {
+  margin: 0.08rem 0.03rem;
+}
+content .head .searchBox .choiceCity .city-ok a {
+  padding: 0 0.06rem;
+  margin: 0 0.03rem;
+  background: #e8e8e8;
+  border: 1px solid #dddddd;
+  color: #000000;
+}
+content .head .searchBox .choiceCity .city-menu {
+  background: #f0f0f0;
+  border-top: 1px solid #dddddd;
+}
+content .head .searchBox .choiceCity .city-menu a {
+  padding: 0 0.1rem;
+}
+content .head .searchBox .choiceCity .city-menu a.active {
+  background: #ffffff;
+}
+content .head .searchBox .choiceCity dl.city-data {
+  display: none;
+  padding: 0.08rem 0;
+  background: #ffffff;
+}
+content .head .searchBox .choiceCity dl.city-data.active {
+  display: block;
+}
+content .head .searchBox .choiceCity dl.city-data dt {
+  margin-bottom: 0.08rem;
+  position: relative;
+}
+content .head .searchBox .choiceCity dl.city-data dt p {
+  display: inline-block;
+}
+content .head .searchBox .choiceCity dl.city-data dt p.number {
+  width: 0.4rem;
+}
+content .head .searchBox .choiceCity dl.city-data dt p.number span {
+  position: absolute;
+  top: 0%;
+}
+content .head .searchBox .choiceCity dl.city-data dt p.citys {
+  width: 2.6rem;
+}
+content .head .searchBox .choiceCity dl.city-data dt p.citys a {
+  padding: 0 0.1rem;
+}
+content .head .searchBox .choiceCity dl.city-data dt p.citys a.active {
+  background: #46a4ff;
+  color: #ffffff;
+  border-radius: 0.02rem;
 }
 content .topImg img {
   width: 100%;

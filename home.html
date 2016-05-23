@@ -1,8 +1,34 @@
 <div class="home">
 	<div class="head">
-		<a><span class="cityname" id="cityname">上海</span></a>
-		<b><img src="img/search.png"/><input class="search-input" type="text" placeholder="请输入目的地或公司名称" /></b>
-		<div class="hide hideBox">1</div>
+		<a class="plt" id="area-choice"><span class="cityname" id="cityname">上海</span></a>
+		<b><img src="img/search.png"/><input id="search-choice" type="text" placeholder="请输入目的地或公司名称" /></b>
+		<div class="hide searchBox" id="searchBox">
+			<div class="title">热门搜索</div>
+			<div class="words">
+				<a>货物</a><a>货物</a><a>货物</a><a>货物</a><a>货物</a><br class="cb"/>
+			</div>
+			<div class="title">历史记录</div>
+			<dl>
+				<dt>货物</dt>
+				<dt>货物</dt>
+			</dl>
+		</div>
+		<div class="hide searchBox" id="areaBox">
+			<div class="title">热门城市</div>
+			<div class="words">
+				<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><br class="cb"/>
+			</div>
+			<div class="choiceCity">
+				<div class="city-title"><a i="0"></a><a i="1"></a><a i="2"></a></div>
+				<div class="city-menu">
+					<a i="0">省份</a><a i="1">城市</a><a i="2">区县</a>
+				</div>
+				<dl class="city-data" i="0"></dl>
+				<dl class="city-data" i="1"></dl>
+				<dl class="city-data" i="2"></dl>
+				<div class="city-ok"><a>确定</a><a>取消</a></div>
+			</div>
+		</div>
 	</div>
 	<div class="topImg"><img src="img/index/top.png"/></div>
 	<!--<dl class="topMenu">

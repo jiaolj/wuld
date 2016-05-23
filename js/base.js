@@ -49,10 +49,15 @@ var Base = (function(){
 		},
 		suc : function(){
 			_obj.query();
+			_obj.getCity();
+			_obj.cityBind();
 			$('dl.topMenu dt').click(function(){
 				var o = $(this);
 				_config.active = o.attr('url');
 				_obj.location(_config.active);
+			})
+			$('#search-choice').click(function(){
+				$('#searchBox').toggleClass('hide');
 			})
 		},
 		url : '/page/index',
@@ -89,6 +94,12 @@ var Base = (function(){
 		tempUrl : 'list.html',
 		suc : function(){
 			_obj.query();
+			$('#search-choice').click(function(){
+				$('#searchBox').toggleClass('hide');
+			})
+			$('#area-choice').click(function(){
+				$('#areaBox').toggleClass('hide');
+			})
 		},
 		o : 'dl.card',
 		data : {sort:130},
@@ -102,6 +113,12 @@ var Base = (function(){
 		tempUrl : 'blog.html',
 		suc : function(){
 			_obj.query();
+			$('#search-choice').click(function(){
+				$('#searchBox').toggleClass('hide');
+			})
+			$('#area-choice').click(function(){
+				$('#areaBox').toggleClass('hide');
+			})
 		},
 		o : 'dl.blog',
 		data : {},
@@ -307,6 +324,206 @@ var Base = (function(){
 		tempUrl : 'price.html',
 	};
 	return {
+		getCity : function(){
+			$('.choiceCity .city-menu a.active').removeClass('active');
+			$('.choiceCity .city-menu a[i="0"]').addClass('active');
+			$('.choiceCity .city-data.active').removeClass('active');
+			$('.choiceCity .city-data[i="0"]').addClass('active');
+			$('.choiceCity .city-data[i="0"]').html(function(){
+				var dom = '<dt><p class="number"><span>#number</span></p><p class="citys">#citys</p></dt>',
+					htm = '',
+					citys = '';
+				for(var c in ChineseDistricts[86]){
+					citys = '';
+					htm += dom.replace('#number',c);
+					for(var k in ChineseDistricts[86][c]){
+						var t = ChineseDistricts[86][c][k];
+						citys += '<a title="'+t.address+'" code="'+t.code+'">'+_obj.simpCity(t.address)+'</a>';
+					}
+					htm = htm.replace('#citys',citys);
+				}
+				return htm;
+			})
+			return _obj;
+		},
+		cityBind : function(){
+			$('#area-choice').click(function(){
+				$('#areaBox').toggleClass('hide');
+				var k = $(this).attr('k');
+				_arg.tp = k;
+				_arg.fromCity = _arg[k].split(' ');
+				_obj.getCity();
+				if(_arg.fromCity.length==1) _arg.fromCity = ['','',''];
+				$('.city-title a').each(function(k,i){
+					var txt = _arg.fromCity[k],
+						ni = k+1,
+						o = $('.choiceCity .city-data[i="'+k+'"] a[title="'+txt+'"]');
+					$(i).text(txt);
+					o.addClass('active');
+					if(ni<=2){
+						var sons = ChineseDistricts[o.attr('code')];
+						$('.choiceCity .city-data[i="'+ni+'"]').html(function(){
+							var htm = '<dt><p class="citys">';
+							for(var t in sons) htm += '<a title="'+sons[t]+'" code="'+t+'">'+sons[t]+'</a>';
+							htm += '</p></dt>';
+							return htm;
+						})
+					}
+				})
+				$('.choiceCity').show().css({top:'100%'}).animate({top:'0.74rem'});
+			})
+			$('.choiceCity .city-menu a').click(function(){
+				var o = $(this),
+					i = o.attr('i');
+				o.parent().find('.active').removeClass('active');
+				o.addClass('active');
+				$('.choiceCity .city-data.active').removeClass('active');
+				$('.choiceCity .city-data[i="'+i+'"]').addClass('active');
+			})
+			$('.choiceCity .city-ok a').click(function(){
+				var o = $(this),
+					txt = o.text();
+				if(txt=='确定'){
+					_arg[_arg.tp] = _arg.fromCity.join(' ').trim();
+					_get();
+				}else if(txt=='取消') {
+					
+				}
+				$('.choiceCity').animate({top:'100%'},function(){
+					$(this).hide().css({top:'0.74rem'});
+				})
+			})
+			$('.choiceCity .city-data').click(function(e){
+				var tar = e.target,
+					o = $(tar),
+					i = parseInt($('.choiceCity .city-menu a.active').attr('i')),
+					ni = i+1,
+					isr = 0
+				;
+				if(tar.nodeName.toLowerCase()==='a'){
+					var txt = o.text();
+					if(txt==_arg.fromCity[i]) {
+						_arg.fromCity[i] = '';
+						o.removeClass('active');
+						isr = 1;
+					}else{
+						_arg.fromCity[i] = txt
+						o.parent().find('.active').removeClass('active');
+						o.addClass('active');
+					}
+					if(ni<=2) {
+						_arg.fromCity[ni] = '';
+						$('.choiceCity .city-data[i="'+ni+'"]').empty();
+					}
+					if(ni==1) {
+						_arg.fromCity[ni+1] = '';
+						$('.choiceCity .city-data[i="'+(ni+1)+'"]').empty();
+					}
+					$('.city-title a').each(function(k,i){
+						$(i).text(_arg.fromCity[k]);
+					})
+					if(isr==1) return;
+					if(ni<=2){
+						var sons = ChineseDistricts[o.attr('code')];
+						$('.choiceCity .city-menu a.active').removeClass('active');
+						$('.choiceCity .city-menu a[i="'+ni+'"]').addClass('active');
+						$('.choiceCity .city-data.active').removeClass('active');
+						$('.choiceCity .city-data[i="'+ni+'"]').addClass('active');
+						$('.choiceCity .city-data[i="'+ni+'"]').html(function(){
+							var htm = '<dt><p class="citys">';
+							for(var t in sons) htm += '<a title="'+sons[t]+'" code="'+t+'">'+_simpCity(sons[t])+'</a>';
+							htm += '</p></dt>';
+							return htm;
+						})
+					}
+				}
+			})
+		},
+		simpCity : function(r){
+			if (r.length>=6){
+				r = r.replace('苏柯尔克孜','');
+				r = r.replace('哈萨克族','');
+			}
+			if (r.length>=5){
+				r = r.replace('保安族 ','');
+				r = r.replace('哈萨克','');
+				r = r.replace('自治区','');
+				r = r.replace('自治州','');
+				r = r.replace('自治县','');
+				r = r.replace('自治旗','');
+				r = r.replace('联合旗','');
+				r = r.replace('斡尔族','');
+				r = r.replace('维吾尔','');
+				r = r.replace('自治州','');
+				r = r.replace('布依族','');
+				r = r.replace('朝鲜族','');
+				r = r.replace('土家族','');
+				r = r.replace('蒙古族','');
+				r = r.replace('仡佬族','');
+				r = r.replace('仫佬族','');
+				r = r.replace('毛南族','');
+				r = r.replace('哈尼族','');
+				r = r.replace('傈僳族','');
+				r = r.replace('纳西族','');
+				r = r.replace('拉祜族','');
+				r = r.replace('布朗族','');
+				r = r.replace('景颇族','');
+				r = r.replace('独龙族','');
+				r = r.replace('普米族','');
+				r = r.replace('裕固族','');
+				r = r.replace('撒拉族','');
+			}
+			if (r.length>=5){
+				r = r.replace('东乡族','');
+			}
+			if (r.length>=4){
+				r = r.replace('林区','');
+				r = r.replace('前旗','');
+				r = r.replace('沁旗','');
+				r = r.replace('中旗','');
+				r = r.replace('后旗','');
+				r = r.replace('左旗','');
+				r = r.replace('右旗','');
+				r = r.replace('各族','');
+				r = r.replace('畲族','');
+				r = r.replace('满族','');
+				r = r.replace('瑶族','');
+				r = r.replace('侗族','');
+				r = r.replace('苗族','');
+				r = r.replace('壮族','');
+				r = r.replace('回族','');
+				r = r.replace('藏族','');
+				r = r.replace('黎族','');
+				r = r.replace('彝族','');
+				r = r.replace('羌族','');
+				r = r.replace('侗族','');
+				r = r.replace('水族','');
+				r = r.replace('傣族','');
+				r = r.replace('白族','');
+				r = r.replace('佤族','');
+				r = r.replace('怒族','');
+				r = r.replace('土族','');
+				r = r.replace('土族','');
+				r = r.replace('土族','');
+				r = r.replace('地区','');
+			}
+			if (r.length>=4){
+				r = r.replace('左翼','');
+				r = r.replace('右翼','');
+				r = r.replace('蒙古','');
+			}
+			if (r.length>=3){
+				r = r.replace('县','');
+				r = r.replace('省','');
+			}
+			if (r.length>=3){
+				r = r.replace('区','');
+			}
+			if (r.length>=3){
+				r = r.replace('市','')
+			}
+			return r;
+		},
 		mvvm : function(object){
 			//增加或删除active
 			object.find('[jui-click="active"]').each(function(k,i){
@@ -553,9 +770,6 @@ var Base = (function(){
 				if(_config.active){
 					_obj.location(_config.active);
 				};
-			})
-			$('.search-input').click(function(){
-				$('.hideBox').toggleClass('hide');
 			})
 			$('body').append('<a href="javascript:window.location.reload()" style="position:fixed;top:0.4rem;right:0;z-index:99;display:block;width:50px;height:50px"></a>');
 		}
