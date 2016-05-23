@@ -35,9 +35,10 @@
   line-height: 0.39rem;
   border-top: 1px solid #dddddd;
   color: #666666;
+  margin-bottom: 0.1rem;
 }
 .home dl.menus dt {
-  width: 33%;
+  width: 50%;
   float: left;
   text-align: center;
   position: relative;
@@ -55,11 +56,11 @@
 .home dl.menus dt.active:after {
   content: '';
   position: absolute;
-  left: 0.23rem;
   top: 0.38rem;
   height: 0.01rem;
-  width: 0.6rem;
   background: #1d77c7;
+  left: 0.35rem;
+  width: 0.9rem;
 }
 .my .myhead {
   position: relative;
@@ -621,6 +622,9 @@ img {
   vertical-align: middle;
   border: none;
 }
+input {
+  border: none;
+}
 input,
 textarea {
   font-size: 0.14rem;
@@ -635,22 +639,61 @@ content .head {
   color: #ffffff;
   line-height: 0.38rem;
   height: 0.38rem;
-  text-align: center;
 }
-content .head .plt {
+content .head a {
   position: absolute;
   left: 0.1rem;
+  color: #ffffff;
+  display: block;
+  width: 0.5rem;
 }
-content .head .plt img.area {
+content .head a img.area {
   height: 0.15rem;
   margin-right: 0.04rem;
   position: relative;
   top: -0.02rem;
 }
+content .head a span:after {
+  content: '';
+  width: 0.07rem;
+  height: 0.07rem;
+  border-left: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  position: absolute;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -moz-transform: rotate(-45deg);
+  /* Firefox */
+  -webkit-transform: rotate(-45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(-45deg);
+  /* Opera */
+  top: 0.11rem;
+  margin-left: 0.06rem;
+}
 content .head img.logo {
   height: 100%;
   position: relative;
   top: -0.02rem;
+}
+content .head b {
+  position: absolute;
+  left: 0.8rem;
+  top: -0.01rem;
+}
+content .head b input {
+  border-radius: 0.08rem;
+  height: 0.18rem;
+  font-size: 0.13rem;
+  text-indent: 0.18rem;
+  width: 2rem;
+}
+content .head b img {
+  position: absolute;
+  height: 0.11rem;
+  top: 0.14rem;
+  left: 0.03rem;
 }
 content .topImg img {
   width: 100%;
@@ -662,6 +705,7 @@ content dl.where {
   border-top: 1px solid #dddddd;
   color: #666666;
   border-bottom: 1px solid #dddddd;
+  position: relative;
 }
 content dl.where dt {
   width: 33%;
@@ -671,6 +715,29 @@ content dl.where dt {
 }
 content dl.where dt img {
   height: 0.16rem;
+}
+content dl.where dt.choice {
+  color: #1d77c7;
+  font-weight: 900;
+}
+content dl.where dt.choice:after {
+  content: '';
+  position: absolute;
+  width: 0.06rem;
+  height: 0.06rem;
+  border-bottom: 1px solid #1d77c7;
+  border-left: 1px solid #1d77c7;
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -moz-transform: rotate(-45deg);
+  /* Firefox */
+  -webkit-transform: rotate(-45deg);
+  /* Safari 和 Chrome */
+  -o-transform: rotate(-45deg);
+  /* Opera */
+  top: 0.1rem;
+  margin-left: 0.06rem;
 }
 content dl.card {
   padding-bottom: 0.7rem;

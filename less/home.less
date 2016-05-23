@@ -21,16 +21,18 @@
 		.hr(32rem);.bg(#f2f2f2);
 	}
 	dl.menus {
-		.bg(#fff);.lhr(78rem);.bdt(#ddd);.c(#666);
+		.bg(#fff);.lhr(78rem);.bdt(#ddd);.c(#666);.mgbr(20rem);
 		dt {
-			.w(33%);.flt;.tct;.psr;.csr;
+			.w(50%);.flt;.tct;.psr;.csr;
 			&.line:before {
 				content : '';
 				.psa;.r;.tr(26rem);.hr(28rem);.wr(2rem);.bg(#eee);
 			}
 			&.active:after {
 				content : '';
-				.psa;.lr(46rem);.tr(76rem);.hr(2rem);.wr(120rem);.bg(@color);
+				.psa;.tr(76rem);.hr(2rem);.bg(@color);
+				//.lr(46rem);.wr(120rem);
+				.lr(70rem);.wr(180rem);
 			}
 		}
 	}

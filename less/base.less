@@ -15,6 +15,9 @@ body {
 img {
 	.val;.bdn
 }
+input {
+	.bdn;
+}
 input,textarea {
 	.fsr(28rem);
 }
@@ -23,15 +26,33 @@ input,textarea {
 }
 content {
 	.head {
-		.bg(@color);.c(#fff);.lhr(76rem);.hr(76rem);.tct;
-		.plt {
-			.psa;.lr(20rem);
+		.bg(@color);.c(#fff);.lhr(76rem);.hr(76rem);//.tct;
+		a {
+			.psa;.lr(20rem);.c(#fff);.dsb;.wr(100rem);
 			img.area {
 				.hr(30rem);.mgrr(8rem);.psr;.tr(-4rem);
+			}
+			span {
+				&:after {
+					content : '';.sqar(14rem);.bdl(#fff);.bdb(#fff);
+					.psa;.tsf(-45deg);.tr(22rem);.mglr(12rem);
+				}
 			}
 		}
 		img.logo {
 			.h;.psr;.tr(-4rem);
+		}
+		b {
+			.psa;.lr(160rem);.tr(-2rem);
+			input {
+				.brr(16rem);.hr(36rem);.fsr(26rem);.tir(36rem);.wr(400rem);
+			}
+			img {
+				.psa;.hr(22rem);.tr(28rem);.lr(6rem);
+			}
+		}
+		.hideBox {
+			
 		}
 	}
 	.topImg {
@@ -40,11 +61,17 @@ content {
 		}
 	}
 	dl.where {
-		.bg(#fff);.lhr(68rem);.hr(68rem);.bdt(#ddd);.c(#666);.bdb(#ddd);
+		.bg(#fff);.lhr(68rem);.hr(68rem);.bdt(#ddd);.c(#666);.bdb(#ddd);.psr;
 		dt {
 			.w(33%);.flt;.tct;.csr;
 			img {
 				.hr(32rem);
+			}
+			&.choice {
+				.c(@color);.fw;
+				&:after {
+					content:'';.psa;.sqar(12rem);.bdb(@color);.bdl(@color);.tsf(-45deg);.tr(20rem);.mglr(12rem);
+				}
 			}
 		}
 	}

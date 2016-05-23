@@ -554,6 +554,9 @@ var Base = (function(){
 					_obj.location(_config.active);
 				};
 			})
+			$('.search-input').click(function(){
+				$('.hideBox').toggleClass('hide');
+			})
 			$('body').append('<a href="javascript:window.location.reload()" style="position:fixed;top:0.4rem;right:0;z-index:99;display:block;width:50px;height:50px"></a>');
 		}
 	}

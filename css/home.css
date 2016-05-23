@@ -35,9 +35,10 @@
   line-height: 0.39rem;
   border-top: 1px solid #dddddd;
   color: #666666;
+  margin-bottom: 0.1rem;
 }
 .home dl.menus dt {
-  width: 33%;
+  width: 50%;
   float: left;
   text-align: center;
   position: relative;
@@ -55,9 +56,9 @@
 .home dl.menus dt.active:after {
   content: '';
   position: absolute;
-  left: 0.23rem;
   top: 0.38rem;
   height: 0.01rem;
-  width: 0.6rem;
   background: #1d77c7;
+  left: 0.35rem;
+  width: 0.9rem;
 }
