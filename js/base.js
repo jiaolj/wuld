@@ -1,6 +1,11 @@
 var Base = (function(){
 	var _obj = {},
 		_init = {},
+		_city = {area:'上海 上海 '},
+		_get = function(){
+			var rs = _city.area.split(' ')
+			$('#cityname').text(rs[1] || rs[0]);
+		},
 		_getSize = function(x){
 			document.getElementById('html').style.fontSize = document.body.clientWidth*x+'px';
 		},
@@ -48,8 +53,8 @@ var Base = (function(){
 			_config.index.url = '/page/index';
 		},
 		suc : function(){
+			_get();
 			_obj.query();
-			_obj.getCity();
 			_obj.cityBind();
 			$('dl.topMenu dt').click(function(){
 				var o = $(this);
@@ -350,12 +355,12 @@ var Base = (function(){
 			$('#area-choice').click(function(){
 				$('#areaBox').toggleClass('hide');
 				var k = $(this).attr('k');
-				_arg.tp = k;
-				_arg.fromCity = _arg[k].split(' ');
+				_city.tp = k;
+				_city.fromCity = _city[k].split(' ');
 				_obj.getCity();
-				if(_arg.fromCity.length==1) _arg.fromCity = ['','',''];
+				if(_city.fromCity.length==1) _city.fromCity = ['','',''];
 				$('.city-title a').each(function(k,i){
-					var txt = _arg.fromCity[k],
+					var txt = _city.fromCity[k],
 						ni = k+1,
 						o = $('.choiceCity .city-data[i="'+k+'"] a[title="'+txt+'"]');
 					$(i).text(txt);
@@ -370,7 +375,7 @@ var Base = (function(){
 						})
 					}
 				})
-				$('.choiceCity').show().css({top:'100%'}).animate({top:'0.74rem'});
+				//$('.choiceCity').show().css({top:'100%'}).animate({top:'0.74rem'});
 			})
 			$('.choiceCity .city-menu a').click(function(){
 				var o = $(this),
@@ -384,14 +389,15 @@ var Base = (function(){
 				var o = $(this),
 					txt = o.text();
 				if(txt=='确定'){
-					_arg[_arg.tp] = _arg.fromCity.join(' ').trim();
+					_city[_city.tp] = _city.fromCity.join(' ').trim();
 					_get();
 				}else if(txt=='取消') {
 					
 				}
-				$('.choiceCity').animate({top:'100%'},function(){
-					$(this).hide().css({top:'0.74rem'});
-				})
+				$('#areaBox').toggleClass('hide');
+				//$('.choiceCity').animate({top:'100%'},function(){
+				//	$(this).hide().css({top:'0.74rem'});
+				//})
 			})
 			$('.choiceCity .city-data').click(function(e){
 				var tar = e.target,
@@ -402,25 +408,25 @@ var Base = (function(){
 				;
 				if(tar.nodeName.toLowerCase()==='a'){
 					var txt = o.text();
-					if(txt==_arg.fromCity[i]) {
-						_arg.fromCity[i] = '';
+					if(txt==_city.fromCity[i]) {
+						_city.fromCity[i] = '';
 						o.removeClass('active');
 						isr = 1;
 					}else{
-						_arg.fromCity[i] = txt
+						_city.fromCity[i] = txt
 						o.parent().find('.active').removeClass('active');
 						o.addClass('active');
 					}
 					if(ni<=2) {
-						_arg.fromCity[ni] = '';
+						_city.fromCity[ni] = '';
 						$('.choiceCity .city-data[i="'+ni+'"]').empty();
 					}
 					if(ni==1) {
-						_arg.fromCity[ni+1] = '';
+						_city.fromCity[ni+1] = '';
 						$('.choiceCity .city-data[i="'+(ni+1)+'"]').empty();
 					}
 					$('.city-title a').each(function(k,i){
-						$(i).text(_arg.fromCity[k]);
+						$(i).text(_city.fromCity[k]);
 					})
 					if(isr==1) return;
 					if(ni<=2){
@@ -431,7 +437,7 @@ var Base = (function(){
 						$('.choiceCity .city-data[i="'+ni+'"]').addClass('active');
 						$('.choiceCity .city-data[i="'+ni+'"]').html(function(){
 							var htm = '<dt><p class="citys">';
-							for(var t in sons) htm += '<a title="'+sons[t]+'" code="'+t+'">'+_simpCity(sons[t])+'</a>';
+							for(var t in sons) htm += '<a title="'+sons[t]+'" code="'+t+'">'+_obj.simpCity(sons[t])+'</a>';
 							htm += '</p></dt>';
 							return htm;
 						})
