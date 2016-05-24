@@ -693,7 +693,7 @@ content .head b input {
   height: 0.18rem;
   font-size: 0.13rem;
   text-indent: 0.18rem;
-  width: 1.9rem;
+  width: 1.8rem;
 }
 content .head b img {
   position: absolute;
@@ -713,12 +713,6 @@ content .head .searchBox {
   color: #333333;
   line-height: 0.26rem;
   z-index: 9;
-  /*dl {
-				.bg(#fff);.brr(8rem);.mgbr(9rem);
-				dt {
-					.bdb(#f4f4f4);.ti(0.5em);
-				}
-			}*/
 }
 content .head .searchBox .title {
   line-height: 0.24rem;
@@ -734,6 +728,22 @@ content .head .searchBox .words a {
   text-align: center;
   border-right: 1px solid #f4f4f4;
   border-bottom: 1px solid #f4f4f4;
+}
+content .head .searchBox dl.his {
+  background: #ffffff;
+  border-radius: 0.04rem;
+  margin-bottom: 0.045rem;
+}
+content .head .searchBox dl.his dt {
+  border-bottom: 1px solid #f4f4f4;
+  text-indent: 0.5em;
+}
+content .head .searchBox a.ok {
+  padding: 0.03rem 0.06rem;
+  margin: 0 0.03rem;
+  background: #e8e8e8;
+  border: 1px solid #dddddd;
+  color: #000000;
 }
 content .head .searchBox .choiceCity {
   top: 50rem;
