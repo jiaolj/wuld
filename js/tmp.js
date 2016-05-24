@@ -9,15 +9,12 @@ var Tmp = {
 				<div class="tit">#title</div>\
 				<div class="phone">\
 					<span>#phone</span>\
-					<span class="star">\
-					<span class="viewNum">#stars</span>\
-					<span class="view">人浏览</span></span>\
 				</div>\
 				<div class="area">#address</div>\
 			</div>\
 			<br class="cb"/>\
 		</dt>\
-	',
+	', //<span class="star"><span class="viewNum">#stars</span><span class="view">人浏览</span></span>
 	goods : '\
 		<dt url="goods" goods_id="#goods_id" car_id="#car_id"> \
 			<div class="logo"><span j="1"><img class="headimg" j="1" src="#headimgurl"><br /><img class="vip" src="img/other/goods.png"></span></div> \
@@ -46,10 +43,12 @@ var Tmp = {
 				<div class="img" i="#ii">#pictures</div> \
 			</div> \
 			<div class="see"> \
-				#viewers \
-			</div> \
-			<div class="action"> \
-				<a class="click" tp="like"><img class="left" src="img/blog/like.png" /><span>#like_num</span></a> <img class="left" src="img/blog/talk.png" /><span>#comment_num</span> <img class="left" src="img/blog/share.png" /> \
+				<span class="viewers">#viewers</span> \
+				<div class="prt">\
+					<span class="openBox hide"><a tp="like"><img class="left" src="img/blog/like.png" /><span d="#like_num">赞</span></a>\
+					<a tp="talk"><img class="left" src="img/blog/talk.png" /><span d="#comment_num">评论</span></a></span>\
+					<img class="openBlog left" src="img/blog/share.png" />\
+				</div> \
 			</div> \
 		</dt>\
 	'

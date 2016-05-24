@@ -1,10 +1,24 @@
 var Base = (function(){
 	var _obj = {},
 		_init = {},
-		_city = {area:'上海 上海 '},
+		_city = {name:'上海',start:'上海',end:'全国'},
+		_getCity = function(n){
+			var s = n.split(' ');
+			return s[1] || s[0]
+		},
 		_get = function(){
-			var rs = _city.area.split(' ')
-			$('#cityname').text(rs[1] || rs[0]);
+			var name = _getCity(_city.name),
+				start = _getCity(_city.start),
+				end = _getCity(_city.end)
+			;
+			$('#cityname').text(name);
+			$('#start').text(start);
+			$('#end').text(end);
+			if(start!='全国') _config.index.data.starting = start;
+			if(end!='全国') _config.index.data.destination = end;
+			if(_city.tp=='start' || _city.tp=='end'){
+				_obj.query({clear:1});
+			}
 		},
 		_getSize = function(x){
 			document.getElementById('html').style.fontSize = document.body.clientWidth*x+'px';
@@ -117,7 +131,9 @@ var Base = (function(){
 		url : '/shuoshuo',
 		tempUrl : 'blog.html',
 		suc : function(){
+			_get();
 			_obj.query();
+			_obj.cityBind();
 			$('#search-choice').click(function(){
 				$('#searchBox').toggleClass('hide');
 			})
@@ -162,7 +178,14 @@ var Base = (function(){
 			return d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.viewers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
 		},
 		bind : function(obj){
-			obj.find('dt').last().find('a.click').click(function(){
+			obj.find('img.openBlog').click(function(){
+				$(this).parent().find('.openBox').toggleClass('hide');
+			})
+			obj.find('a[tp="talk"]').click(function(){
+				$('.leave').toggleClass('hide');
+				$('.leave input').focus();
+			})
+			/*obj.find('dt').last().find('a.click').click(function(){
 				var o = $(this),
 					tp = o.attr('tp'),
 					dt = o.parent().parent()
@@ -185,7 +208,7 @@ var Base = (function(){
 				else if(tp='talk'){
 					location.href = $(this).attr('htm');
 				}
-			})
+			})*/
 		}
 	};
 	_config.goods = {
@@ -352,7 +375,12 @@ var Base = (function(){
 			return _obj;
 		},
 		cityBind : function(){
-			$('#area-choice').click(function(){
+			$('.words a').click(function(){
+				_city[_city.tp] = $(this).text();
+				_get();
+				$('#areaBox').toggleClass('hide');
+			})
+			$('.choice').click(function(){
 				$('#areaBox').toggleClass('hide');
 				var k = $(this).attr('k');
 				_city.tp = k;

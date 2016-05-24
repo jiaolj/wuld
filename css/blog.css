@@ -65,46 +65,74 @@
   padding-bottom: 0.08rem;
   border-bottom: 1px solid #eeeeee;
   line-height: 0.15rem;
+  position: relative;
 }
-.blog dl.blog dt .see > img {
+.blog dl.blog dt .see .viewers img {
   width: 0.22rem;
   height: 0.22rem;
   margin-right: 0.08rem;
   border-radius: 50%;
 }
-.blog dl.blog dt .see .frt {
+.blog dl.blog dt .see .prt {
   color: #999999;
+  position: absolute;
+  right: 0%;
+  top: 0%;
 }
-.blog dl.blog dt .see .frt img {
+.blog dl.blog dt .see .prt img {
   height: 0.15rem;
   position: relative;
   left: -0.03rem;
 }
-.blog dl.blog dt .see .frt span {
+.blog dl.blog dt .see .prt img.openBlog {
+  cursor: pointer;
+}
+.blog dl.blog dt .see .prt .openBox {
+  margin-right: 0.04rem;
+  background: #000000;
+  padding: 0.04rem 0.1rem 0.08rem 0.1rem;
+  border-radius: 0.02rem;
+}
+.blog dl.blog dt .see .prt .openBox a {
+  color: #ffffff;
+  margin-left: 0.04rem;
+  margin-right: 0.04rem;
+}
+.blog dl.blog dt .see .prt .openBox a span {
   font-size: 0.11rem;
   position: relative;
-  top: 0.03rem;
+  top: 0.01rem;
 }
-.blog dl.blog dt .action {
-  padding-top: 0.1rem;
-  line-height: 0.3rem;
-}
-.blog dl.blog dt .action > img,
-.blog dl.blog dt .action a > img {
-  width: 0.14rem;
-  margin-right: 0.05rem;
-}
-.blog dl.blog dt .action > span,
-.blog dl.blog dt .action a > span {
-  color: #999999;
-  font-size: 0.1rem;
-  margin-right: 0.1rem;
-  position: relative;
-  top: 0.02rem;
-}
-.blog dl.blog dt .action .frt {
-  width: 0.83rem;
-}
-.blog dl.blog dt .action .frt img {
+.blog .leave {
+  position: fixed;
+  bottom: 0;
   width: 100%;
+  height: 0.45rem;
+  line-height: 0.49rem;
+  background: #ffffff;
+  z-index: 9;
+  border-top: 1px solid #aaaaaa;
+}
+.blog .leave .search {
+  float: left;
+  width: 2.65rem;
+  overflow: hidden;
+  margin-right: 0.045rem;
+}
+.blog .leave .search input {
+  width: 100%;
+  border-bottom: 1px solid #00cd00;
+  margin-left: 0.09rem;
+}
+.blog .leave a {
+  display: block;
+  float: left;
+  border: 1px solid #999999;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  width: 0.4rem;
+  position: relative;
+  top: 0.085rem;
+  text-align: center;
+  border-radius: 0.04rem;
 }

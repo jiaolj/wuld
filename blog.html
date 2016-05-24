@@ -1,6 +1,6 @@
 <div class="blog">
 	<div class="head">
-		<a class="plt" id="area-choice"><span class="cityname" id="cityname">上海</span></a>
+		<a class="plt choice" k="name"><span class="cityname" id="cityname"></span></a>
 		<b><img src="img/search.png"/><input id="search-choice" type="text" placeholder="请输入关键字" /></b>
 		<div class="hide searchBox" id="searchBox">
 			<div class="title">热门搜索</div>
@@ -17,15 +17,27 @@
 		<div class="hide searchBox" id="areaBox">
 			<div class="title">热门城市</div>
 			<div class="words">
-				<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><br class="cb"/>
+				<a>全国</a><a>北京</a><a>成都</a>
+				<a>重庆</a><a>广州</a><a>杭州</a>
+				<a>南京</a><a>上海</a><a>深圳</a>
+				<a>天津</a><a>武汉</a><a>西安</a>
+				<br class="cb"/>
 			</div>
-			<div class="title">其他城市</div>
-			<dl>
-				<dt>1</dt>
-				<dt>2</dt>
-			</dl>
+			<div class="choiceCity">
+				<div class="city-title"><a i="0"></a><a i="1"></a><a i="2"></a></div>
+				<div class="city-menu">
+					<a i="0">省份</a><a i="1">城市</a><a i="2">区县</a>
+				</div>
+				<dl class="city-data" i="0"></dl>
+				<dl class="city-data" i="1"></dl>
+				<dl class="city-data" i="2"></dl>
+				<div class="city-ok"><a>确定</a><a>取消</a></div>
+			</div>
 		</div>
-		<a class="prt">发布</a>
+		<a href="/view/sspost" class="prt">发布</a>
 	</div>
 	<dl class="blog"></dl>
+	<div class="leave hide">
+		<div class="search"><input type="text" /></div><a>发送</a>
+	</div>
 </div>

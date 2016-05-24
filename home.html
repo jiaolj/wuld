@@ -1,6 +1,6 @@
 <div class="home">
 	<div class="head">
-		<a class="plt" k="area" id="area-choice"><span class="cityname" id="cityname"></span></a>
+		<a class="plt choice" k="name"><span class="cityname" id="cityname"></span></a>
 		<b><img src="img/search.png"/><input id="search-choice" type="text" placeholder="请输入关键字" /></b>
 		<div class="hide searchBox" id="searchBox">
 			<div class="title">热门搜索</div>
@@ -17,7 +17,11 @@
 		<div class="hide searchBox" id="areaBox">
 			<div class="title">热门城市</div>
 			<div class="words">
-				<a>1</a><a>2</a><a>3</a><a>4</a><a>5</a><br class="cb"/>
+				<a>全国</a><a>北京</a><a>成都</a>
+				<a>重庆</a><a>广州</a><a>杭州</a>
+				<a>南京</a><a>上海</a><a>深圳</a>
+				<a>天津</a><a>武汉</a><a>西安</a>
+				<br class="cb"/>
 			</div>
 			<div class="choiceCity">
 				<div class="city-title"><a i="0"></a><a i="1"></a><a i="2"></a></div>
@@ -41,7 +45,7 @@
 		<dt class="active line" i="0" box="#card1" url="/page/index">最新推荐</dt><dt i="1" box="#card2" url="/page/index">最新加入</dt><dt i="2" box="#goods" url="/viewcar">今日特价</dt><br class="cb"/>
 	</dl>-->
 	<dl class="where">
-		<dt class="line choice">上海</dt><dt class="line"><img src="img/tools.png" /></dt><dt class="choice">全国</dt><br class="cb"/>
+		<dt class="line choice" k="start" id="start"></dt><dt class="line"><img src="img/tools.png" /></dt><dt class="choice" k="end" id="end"></dt><br class="cb"/>
 	</dl>
 	<dl class="card jui-box jui-box1 active" i="0" id="card1"></dl>
 	<dl class="card jui-box jui-box1" i="1" id="card2"></dl>
