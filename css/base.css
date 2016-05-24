@@ -84,9 +84,6 @@
   top: 1.22rem;
   font-size: 0.15rem;
 }
-.my dl {
-  padding-bottom: 0.7rem;
-}
 .my dl dt {
   width: 33%;
   float: left;
@@ -109,6 +106,11 @@
   height: 100%;
   right: 0%;
   top: 0%;
+}
+.my .contact {
+  text-align: center;
+  padding-top: 0.3rem;
+  padding-bottom: 0.6rem;
 }
 .detail .cover-page {
   position: fixed;
@@ -723,11 +725,12 @@ content .head .searchBox .words {
 }
 content .head .searchBox .words a {
   display: block;
-  width: 33%;
+  width: 33.3%;
   float: left;
   text-align: center;
   border-right: 1px solid #f4f4f4;
   border-bottom: 1px solid #f4f4f4;
+  box-sizing: border-box;
 }
 content .head .searchBox dl.his {
   background: #ffffff;
@@ -759,7 +762,8 @@ content .head .searchBox .choiceCity .city-title a:hover {
   background: #f1f8ff;
 }
 content .head .searchBox .choiceCity .city-ok {
-  margin: 0.08rem 0.03rem;
+  padding: 0.08rem 0.03rem;
+  background: #ffffff;
 }
 content .head .searchBox .choiceCity .city-ok a {
   padding: 0 0.06rem;
