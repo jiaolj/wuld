@@ -61,11 +61,12 @@
   margin-left: 0.05rem;
 }
 .blog dl.blog dt .see {
-  margin-top: 0.1rem;
+  margin-top: 0.08rem;
   padding-bottom: 0.08rem;
   border-bottom: 1px solid #eeeeee;
-  line-height: 0.15rem;
+  line-height: 0.13rem;
   position: relative;
+  height: 0.18rem;
 }
 .blog dl.blog dt .see .viewers img {
   width: 0.22rem;

@@ -67,6 +67,7 @@ var Base = (function(){
 			_config.index.url = '/page/index';
 		},
 		suc : function(){
+			$('#seoTitle').text('物流岛');
 			_get();
 			_obj.query();
 			_obj.cityBind();
@@ -77,6 +78,15 @@ var Base = (function(){
 			})
 			$('#search-choice').click(function(){
 				$('#searchBox').toggleClass('hide');
+				$('#searchBox .search input').focus();
+			})
+			$('a.back').click(function(){
+				$('#searchBox').toggleClass('hide');
+			})
+			$('#searchBox .words>a,#searchBox .his>dt').click(function(){
+				$('#searchBox').toggleClass('hide');
+				var name = $(this).text().trim();
+				log(name);
 			})
 		},
 		url : '/page/index',
@@ -305,7 +315,7 @@ var Base = (function(){
 						$('#onlinec').attr('htm','mdetail.html?id='+_req.user_id);
 						$('#phonec').attr('href','tel:'+dd.page.phone);
 						$('#ctime').text(_obj.tools.int_to_str(dd.page.ctime));
-						$('.seoTitle').text(dd.page.title);
+						$('#seoTitle').text(dd.page.title);
 						(function(){
 							var qrcode = new QRCode(document.getElementById("qrcode"), {
 								width : 300,//设置宽高
@@ -375,6 +385,7 @@ var Base = (function(){
 			return _obj;
 		},
 		cityBind : function(){
+			return;
 			$('.words a').click(function(){
 				_city[_city.tp] = $(this).text();
 				_get();
