@@ -64,9 +64,9 @@
   margin-top: 0.08rem;
   padding-bottom: 0.08rem;
   border-bottom: 1px solid #eeeeee;
-  line-height: 0.13rem;
+  line-height: 0.16rem;
   position: relative;
-  height: 0.18rem;
+  height: 0.21rem;
 }
 .blog dl.blog dt .see .viewers img {
   width: 0.22rem;
@@ -90,14 +90,14 @@
 }
 .blog dl.blog dt .see .prt .openBox {
   margin-right: 0.04rem;
-  background: #000000;
-  padding: 0.04rem 0.1rem 0.08rem 0.1rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.04rem 0.12rem 0.08rem 0.12rem;
   border-radius: 0.02rem;
 }
 .blog dl.blog dt .see .prt .openBox a {
   color: #ffffff;
-  margin-left: 0.04rem;
-  margin-right: 0.04rem;
+  margin-left: 0.12rem;
+  margin-right: 0.12rem;
 }
 .blog dl.blog dt .see .prt .openBox a span {
   font-size: 0.11rem;

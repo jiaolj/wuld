@@ -51,6 +51,7 @@ var Base = (function(){
 			})
 		},
 		_config = {
+			host : 'http://www.jutou56.com',
 			active : _req.url,
 			card_id : _req.card_id,
 			car_id : _req.car_id,
@@ -71,6 +72,11 @@ var Base = (function(){
 			_get();
 			_obj.query();
 			_obj.cityBind();
+			//历史搜索
+			if(!cookie.get('kwdHis')) {
+				cookie.set('kwdHis','[]');
+			}
+			_obj.getHis();
 			$('dl.topMenu dt').click(function(){
 				var o = $(this);
 				_config.active = o.attr('url');
@@ -84,9 +90,34 @@ var Base = (function(){
 				$('#searchBox').toggleClass('hide');
 			})
 			$('#searchBox .words>a,#searchBox .his>dt').click(function(){
-				$('#searchBox').toggleClass('hide');
 				var name = $(this).text().trim();
-				log(name);
+				if(name){
+					var kwdHis = json(cookie.get('kwdHis'));
+					if(kwdHis.indexOf(name)==-1) {
+						kwdHis.push(name);
+						cookie.set('kwdHis',str(kwdHis));
+					}
+					_obj.getHis();
+					$('#searchBox').toggleClass('hide');
+					_config.index.data.kwd = name;
+					$('#search-choice span').text(name);
+					_obj.query({clear:1});
+				}
+			})
+			$('a.ok').click(function(){
+				var name = $('#searchBox .search input').val().trim();
+				if(name){
+					var kwdHis = json(cookie.get('kwdHis'));
+					if(kwdHis.indexOf(name)==-1) {
+						kwdHis.push(name);
+						cookie.set('kwdHis',str(kwdHis));
+					}
+					_obj.getHis();
+					$('#searchBox').toggleClass('hide');
+					_config.index.data.kwd = name;
+					$('#search-choice span').text(name);
+					_obj.query({clear:1});
+				}
 			})
 		},
 		url : '/page/index',
@@ -101,7 +132,7 @@ var Base = (function(){
 			else d = d.replace('#vip',' hide');
 			d = d.replace('#renzheng',' hide');
 			if(j.logo) d = d.replace('#logo',j.logo);
-			else d = d.replace('#logo','http://www.chawuliu.com/uploads/page/default9d665cfbf7bbd3834f7accbeaeea423b.jpg');
+			else d = d.replace('#logo',_config.host+'/uploads/page/default9d665cfbf7bbd3834f7accbeaeea423b.jpg');
 			return d;
 		},
 		bind : function(obj){
@@ -150,6 +181,22 @@ var Base = (function(){
 			$('#area-choice').click(function(){
 				$('#areaBox').toggleClass('hide');
 			})
+			$('.leave a').click(function(){
+				var txt = $('.leave input').val().trim();
+				if(txt){
+					$.ajax({
+						url: '/shuoshuo/doReply/'+obj.config.id,
+						data: {content : txt},
+						dataType: 'json',
+						success : function(dd) {
+							alert(dd.info);
+							if(dd.info=='发表回复成功'){
+								$('.leave').toggleClass('hide');
+							}
+						}
+					})
+				}
+			})
 		},
 		o : 'dl.blog',
 		data : {},
@@ -161,7 +208,7 @@ var Base = (function(){
 				if(pic.length>0){
 					plist = pic.split(',');
 					$.each(plist,function(k,i){
-						var src = 'http://www.chawuliu.com/uploads/'+i;
+						var src = _config.host+'/uploads/'+i;
 						var img = new Image();
 						img.src = src;
 						img.onload = function(){
@@ -194,6 +241,22 @@ var Base = (function(){
 			obj.find('a[tp="talk"]').click(function(){
 				$('.leave').toggleClass('hide');
 				$('.leave input').focus();
+			})
+			obj.find('a[tp="like"]').click(function(){
+				var o = $(this),
+					dt = o.parent().parent().parent().parent()
+				;
+				$.ajax({
+					url: '/shuoshuo/like/' + dt.attr('did'),
+					data:{},
+					dataType: 'json',
+					success : function(dd) {
+						alert(dd.info);
+						if(dd.info=='点赞成功') {
+							
+						}
+					}
+				})
 			})
 			/*obj.find('dt').last().find('a.click').click(function(){
 				var o = $(this),
@@ -357,11 +420,67 @@ var Base = (function(){
 	};
 	_config.my = {
 		tempUrl : 'my.html',
+		suc : function(){
+			_obj.getUser(function(userInfo){
+				_obj.getUserDetail(userInfo.user_id,function(back){
+					$('.head').attr('src',back.headimgurl);
+					$('.nickname').text(back.nickname);
+				})
+				if(userInfo.pages[0].id) {
+					$('#mycard').attr('args','?id='+userInfo.pages[0].id);
+				}
+			})
+			$('dl.mydl>dt').click(function(){
+				var o = $(this),
+					url = o.attr('url');
+				if(url){
+					alert(_config.active+o.attr('args'));
+					_config.active = url;
+					_obj.location(_config.active+o.attr('args'));
+				}
+			})
+		}
 	};
 	_config.price = {
 		tempUrl : 'price.html',
 	};
 	return {
+		getHis : function(){
+			$('dl.his').html(function(){
+				var htm = '',
+					data = json(cookie.get('kwdHis'));
+				data.reverse();
+				$.each(data,function(k,j){
+					if(k<11) htm += '<dt><img src="img/time.png"/> '+j+'</dt>';
+				})
+				return htm;
+			})
+		},
+		getUserDetail : function(uid,suc){
+			$.ajax({
+				url: '/chat/userinfo',
+				data: {user_id:uid},
+				dataType: 'json',
+				success : function(dd) {
+					suc && suc(dd);
+				},
+				error : function(xhr, type) {
+					log(' request failed'+xhr);
+				}
+			})
+		},
+		getUser : function(suc){
+			$.ajax({
+				url : '/user/mycard',
+				dataType : 'json',
+				success : function(dd) {
+					suc && suc(dd);
+				},
+				error:function(jqXHR,textStatus) {
+					log(' request failed'+textStatus);
+				}
+			})
+		},
 		getCity : function(){
 			$('.choiceCity .city-menu a.active').removeClass('active');
 			$('.choiceCity .city-menu a[i="0"]').addClass('active');
@@ -385,15 +504,15 @@ var Base = (function(){
 			return _obj;
 		},
 		cityBind : function(){
-			return;
-			$('.words a').click(function(){
+			$('#areaBox .words a').click(function(){
 				_city[_city.tp] = $(this).text();
 				_get();
 				$('#areaBox').toggleClass('hide');
 			})
 			$('.choice').click(function(){
-				$('#areaBox').toggleClass('hide');
 				var k = $(this).attr('k');
+				if(k!='end') return;
+				$('#areaBox').toggleClass('hide');
 				_city.tp = k;
 				_city.fromCity = _city[k].split(' ');
 				_obj.getCity();
@@ -735,6 +854,7 @@ var Base = (function(){
 				if(q.clear==1) obj.empty();
 				obj.append(Tmp.load);
 				atv.data.page = _obj.turn.page;
+				log(atv.data);
 				$.ajax({
 					url : q.url || atv.url,
 					data : atv.data,
