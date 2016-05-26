@@ -509,6 +509,10 @@
   color: #cccccc;
   line-height: 0.19rem;
 }
+.blog dl.blog dt span.viewCard {
+  position: absolute;
+  right: 0.045rem;
+}
 .blog dl.blog dt .text {
   border-radius: 0.1rem;
   background: #f4f4f4;

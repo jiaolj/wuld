@@ -37,7 +37,7 @@ var Tmp = {
 				<p>#nickname</p> \
 				<p class="time">#ctime</p> \
 			</div> \
-			<br class="cb"/> \
+			<br class="cb"/> <span class="viewCard">查看名片</span>\
 			<div class="text">\
 				<div class="title">#content</div> \
 				<div class="img" i="#ii">#pictures</div> \
@@ -45,11 +45,12 @@ var Tmp = {
 			<div class="see"> \
 				<span class="viewers">#viewers</span> \
 				<div class="prt">\
-					<span class="openBox hide"><a tp="like"><img class="left" src="img/blog/like.png" /><span d="#like_num">赞</span></a>\
-					<a tp="talk"><img class="left" src="img/blog/talk.png" /><span d="#comment_num">评论</span></a></span>\
+					<span class="openBox hide">\
+					<a tp="like"><img class="left" src="img/blog/like.png" /><span d="#like_num">赞</span></a>\
+					</span>\
 					<img class="openBlog left" src="img/blog/share.png" />\
 				</div> \
 			</div> \
 		</dt>\
-	'
+	'//<a tp="talk"><img class="left" src="img/blog/talk.png" /><span d="#comment_num">评论</span></a>\
 }

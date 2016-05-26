@@ -17,6 +17,7 @@ var Base = (function(){
 			if(start!='全国') _config.index.data.starting = start;
 			if(end!='全国') _config.index.data.destination = end;
 			if(_city.tp=='start' || _city.tp=='end'){
+				_obj.turn.end = 0;
 				_obj.query({clear:1});
 			}
 		},
@@ -89,35 +90,13 @@ var Base = (function(){
 			$('a.back').click(function(){
 				$('#searchBox').toggleClass('hide');
 			})
-			$('#searchBox .words>a,#searchBox .his>dt').click(function(){
+			$('#searchBox .words>a').click(function(){
 				var name = $(this).text().trim();
-				if(name){
-					var kwdHis = json(cookie.get('kwdHis'));
-					if(kwdHis.indexOf(name)==-1) {
-						kwdHis.push(name);
-						cookie.set('kwdHis',str(kwdHis));
-					}
-					_obj.getHis();
-					$('#searchBox').toggleClass('hide');
-					_config.index.data.kwd = name;
-					$('#search-choice span').text(name);
-					_obj.query({clear:1});
-				}
+				_obj.getHisFuc(name);
 			})
 			$('a.ok').click(function(){
 				var name = $('#searchBox .search input').val().trim();
-				if(name){
-					var kwdHis = json(cookie.get('kwdHis'));
-					if(kwdHis.indexOf(name)==-1) {
-						kwdHis.push(name);
-						cookie.set('kwdHis',str(kwdHis));
-					}
-					_obj.getHis();
-					$('#searchBox').toggleClass('hide');
-					_config.index.data.kwd = name;
-					$('#search-choice span').text(name);
-					_obj.query({clear:1});
-				}
+				_obj.getHisFuc(name);
 			})
 		},
 		url : '/page/index',
@@ -182,10 +161,12 @@ var Base = (function(){
 				$('#areaBox').toggleClass('hide');
 			})
 			$('.leave a').click(function(){
-				var txt = $('.leave input').val().trim();
+				var txt = $('.leave input').val().trim(),
+					did = $('.leave input').attr('did')
+				;
 				if(txt){
 					$.ajax({
-						url: '/shuoshuo/doReply/'+obj.config.id,
+						url: '/shuoshuo/doReply/'+did,
 						data: {content : txt},
 						dataType: 'json',
 						success : function(dd) {
@@ -232,7 +213,7 @@ var Base = (function(){
 		},
 		rData : function(d,j){
 			var obj = this;
-			return d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.viewers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
+			return d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.likers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
 		},
 		bind : function(obj){
 			obj.find('img.openBlog').click(function(){
@@ -248,16 +229,18 @@ var Base = (function(){
 			})
 			obj.find('a[tp="like"]').click(function(){
 				var o = $(this),
-					dt = o.parent().parent().parent().parent()
+					dt = o.parent().parent().parent().parent(),
+					did = dt.attr('did')
 				;
 				$.ajax({
-					url: '/shuoshuo/like/' + dt.attr('did'),
+					url: '/shuoshuo/like/' + did,
 					data:{},
 					dataType: 'json',
 					success : function(dd) {
 						alert(dd.info);
 						if(dd.info=='点赞成功') {
-							
+							$('.leave').toggleClass('hide');
+							$('dt[did="'+did+'"] .openBox').toggleClass('hide');
 						}
 					}
 				})
@@ -458,7 +441,27 @@ var Base = (function(){
 					if(k<11) htm += '<dt><img src="img/time.png"/> '+j+'</dt>';
 				})
 				return htm;
+			}).find('dt').click(function(){
+				var name = $(this).text().trim();
+				_obj.getHisFuc(name);
 			})
+		},
+		getHisFuc : function(name){
+			var kwdHis = json(cookie.get('kwdHis'));
+			if(kwdHis.indexOf(name)==-1) {
+				kwdHis.push(name);
+				cookie.set('kwdHis',str(kwdHis));
+			}
+			_obj.getHis();
+			$('#searchBox').toggleClass('hide');
+			if(name) _config.index.data.kwd = name;
+			else {
+				delete _config.index.data.kwd;
+				name = '搜索';
+			}
+			$('#search-choice span').text(name);
+			_obj.turn.end = 0;
+			_obj.query({clear:1});
 		},
 		getUserDetail : function(uid,suc){
 			$.ajax({
@@ -866,6 +869,7 @@ var Base = (function(){
 					success : function(back){
 						var lst = back.list || back.page_list || back;
 						if(lst.length>0){
+							log(lst);
 							for(var i=0;i<lst.length;i++) {
 								obj.append(rData(q.tmp || atv.temp,lst[i]));
 								bind(obj.find('dt').last());
