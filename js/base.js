@@ -239,8 +239,12 @@ var Base = (function(){
 				$(this).parent().find('.openBox').toggleClass('hide');
 			})
 			obj.find('a[tp="talk"]').click(function(){
+				var o = $(this),
+					dt = o.parent().parent().parent().parent()
+				;
 				$('.leave').toggleClass('hide');
 				$('.leave input').focus();
+				$('.leave input').attr('did',dt.attr('did'));
 			})
 			obj.find('a[tp="like"]').click(function(){
 				var o = $(this),
