@@ -71,7 +71,9 @@ var Base = (function(){
 		suc : function(){
 			$('#seoTitle').text('物流岛');
 			_get();
-			_obj.query();
+			_obj.turn.end = 0;
+			delete _config.index.data.kwd;
+			_obj.query({clear:1});
 			_obj.cityBind();
 			//历史搜索
 			if(!cookie.get('kwdHis')) {
