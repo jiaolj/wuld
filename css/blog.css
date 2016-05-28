@@ -6,6 +6,7 @@
   padding: 0.1rem;
   background: #ffffff;
   margin-bottom: 0.21rem;
+  position: relative;
 }
 .blog dl.blog dt .photo {
   width: 0.43rem;
@@ -37,7 +38,13 @@
 }
 .blog dl.blog dt span.viewCard {
   position: absolute;
-  right: 0.045rem;
+  right: 0.09rem;
+  top: 0.34rem;
+  border: 1px solid #df4b24;
+  color: #df4b24;
+  border-radius: 0.02rem;
+  padding: 0.03rem 0.045rem;
+  font-size: 0.11rem;
 }
 .blog dl.blog dt .text {
   border-radius: 0.1rem;
