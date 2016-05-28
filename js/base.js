@@ -75,17 +75,12 @@ var Base = (function(){
 			delete _config.index.data.kwd;
 			_obj.query({clear:1});
 			_obj.cityBind();
-			//历史搜索
-			if(!cookie.get('kwdHis')) {
-				cookie.set('kwdHis','[]');
-			}
-			_obj.getHis();
 			$('dl.topMenu dt').click(function(){
 				var o = $(this);
 				_config.active = o.attr('url');
 				_obj.location(_config.active);
 			})
-			$('#search-choice').click(function(){
+			$('.search-choice').click(function(){
 				$('#searchBox').toggleClass('hide');
 				$('#searchBox .search input').focus();
 			})
@@ -96,10 +91,16 @@ var Base = (function(){
 				var name = $(this).text().trim();
 				_obj.getHisFuc(name);
 			})
-			$('a.ok').click(function(){
+			$('#searchBox a.ok').click(function(){
 				var name = $('#searchBox .search input').val().trim();
+				log(name);
 				_obj.getHisFuc(name);
 			})
+			//历史搜索
+			if(!cookie.get('kwdHis')) {
+				cookie.set('kwdHis','');
+			}
+			_obj.getHis();
 		},
 		url : '/page/index',
 		tempUrl : 'home.html',
@@ -135,12 +136,6 @@ var Base = (function(){
 		tempUrl : 'list.html',
 		suc : function(){
 			_obj.query();
-			$('#search-choice').click(function(){
-				$('#searchBox').toggleClass('hide');
-			})
-			$('#area-choice').click(function(){
-				$('#areaBox').toggleClass('hide');
-			})
 		},
 		o : 'dl.card',
 		data : {sort:130},
@@ -156,7 +151,7 @@ var Base = (function(){
 			_get();
 			_obj.query();
 			_obj.cityBind();
-			$('#search-choice').click(function(){
+			$('.search-choice').click(function(){
 				$('#searchBox').toggleClass('hide');
 			})
 			$('#area-choice').click(function(){
@@ -437,10 +432,10 @@ var Base = (function(){
 		getHis : function(){
 			$('dl.his').html(function(){
 				var htm = '',
-					data = json(cookie.get('kwdHis'));
+					data = cookie.get('kwdHis').split(',');
 				data.reverse();
 				$.each(data,function(k,j){
-					if(k<11) htm += '<dt><img src="img/time.png"/> '+j+'</dt>';
+					if(j.length>0 && k<10) htm += '<dt><img src="img/time.png"/> '+unescape(j)+'</dt>';
 				})
 				return htm;
 			}).find('dt').click(function(){
@@ -449,10 +444,10 @@ var Base = (function(){
 			})
 		},
 		getHisFuc : function(name){
-			var kwdHis = json(cookie.get('kwdHis'));
+			var kwdHis = cookie.get('kwdHis').split(',');
 			if(kwdHis.indexOf(name)==-1) {
-				kwdHis.push(name);
-				cookie.set('kwdHis',str(kwdHis));
+				kwdHis.push(escape(name));
+				cookie.set('kwdHis',kwdHis.join(','));
 			}
 			_obj.getHis();
 			$('#searchBox').toggleClass('hide');
@@ -461,7 +456,7 @@ var Base = (function(){
 				delete _config.index.data.kwd;
 				name = '搜索';
 			}
-			$('#search-choice span').text(name);
+			$('.search-choice span').text(name);
 			_obj.turn.end = 0;
 			_obj.query({clear:1});
 		},
@@ -869,6 +864,8 @@ var Base = (function(){
 					data : atv.data,
 					dataType : 'json',
 					success : function(back){
+						obj.find('.load').remove();
+						_obj.turn.is = 0;
 						var lst = back.list || back.page_list || back;
 						if(lst.length>0){
 							log(lst);
@@ -878,10 +875,14 @@ var Base = (function(){
 							}
 						}
 						else {
-							_obj.turn.end = 1;
+							if(atv.data.kwd){
+								obj.append('<div class="tips">未搜索到“<b>'+atv.data.kwd+'</b>”相关结果，下面是推荐专线</div>');
+								delete atv.data.kwd;
+								_obj.query();
+							}else{
+								_obj.turn.end = 1;
+							}
 						}
-						obj.find('.load').remove();
-						_obj.turn.is = 0;
 					}
 				})
 			}

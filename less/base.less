@@ -24,6 +24,12 @@ input,textarea {
 .load {
 	.lhr(36rem);.tct;.fsr(28rem);
 }
+.tips {
+	.lhr(56rem);.tir(20rem);.fsr(28rem);
+	b {
+		.c(@red);
+	}
+}
 content {
 	.head {
 		.bg(@color);.c(#fff);.lhr(76rem);.hr(76rem);//.tct;
@@ -45,8 +51,8 @@ content {
 		img.logo {
 			.h;.psr;.tr(-4rem);
 		}
-		b {
-			.psa;.dsb;.lr(150rem);.tr(14rem);.brr(16rem);.lhr(46rem);.fsr(22rem);.wr(360rem);.tct;.bg(#fff);.c(#666);
+		.search-choice {
+			.psa;.dsb;.lr(150rem);.tr(14rem);.brr(16rem);.lhr(46rem);.fsr(22rem);.wr(360rem);.tct;.bg(#fff);.c(#666);.zi(9);.csr;
 			img {
 				.hr(22rem);.psr;.tr(-4rem);
 			}
@@ -98,7 +104,7 @@ content {
 			}
 		}
 		.searchBox {
-			.bg(#f4f4f4);.bs;.bd;.psa;.tr(76rem);.w(88%);.l(5%);.pd(1%);.c(#333);.lhr(52rem);.zi(9);
+			.bg(#f4f4f4);.bs;.bd;.psa;.pd(1%);.c(#333);.lhr(52rem);.zi(9);.w;.t;//.w(88%);.l(5%);.tr(76rem);
 			.title {
 				.lhr(48rem);
 			}
@@ -133,7 +139,13 @@ content {
 				.city-ok {
 					.pd-r(16rem,6rem);.bg(#fff);
 					a {
-						.pd-r(0,12rem);.mg-r(0,6rem);.bg(#E8E8E8);.bd(#ddd);.c(#000);
+						.pd-r(0,12rem);.mg-r(0,6rem);.bd(#ddd);.brr(4rem);
+						&.ok {
+							.bg(@color);.c(#fff);
+						}
+						&.cancel {
+							.bg(#E8E8E8);.c(#000);
+						}
 					}
 				}
 				.city-menu {

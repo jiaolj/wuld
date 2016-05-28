@@ -670,6 +670,14 @@ textarea {
   text-align: center;
   font-size: 0.14rem;
 }
+.tips {
+  line-height: 0.28rem;
+  text-indent: 0.1rem;
+  font-size: 0.14rem;
+}
+.tips b {
+  color: #df4b24;
+}
 content .head {
   background: #1d77c7;
   color: #ffffff;
@@ -719,7 +727,7 @@ content .head img.logo {
   position: relative;
   top: -0.02rem;
 }
-content .head b {
+content .head .search-choice {
   position: absolute;
   display: block;
   left: 0.75rem;
@@ -731,8 +739,10 @@ content .head b {
   text-align: center;
   background: #ffffff;
   color: #666666;
+  z-index: 9;
+  cursor: pointer;
 }
-content .head b img {
+content .head .search-choice img {
   height: 0.11rem;
   position: relative;
   top: -0.02rem;
@@ -870,13 +880,12 @@ content .head .searchBox {
   box-shadow: 0px 2px 12px #cccccc;
   border: 1px solid #e9e9e9;
   position: absolute;
-  top: 0.38rem;
-  width: 88%;
-  left: 5%;
   padding: 1%;
   color: #333333;
   line-height: 0.26rem;
   z-index: 9;
+  width: 100%;
+  top: 0%;
 }
 content .head .searchBox .title {
   line-height: 0.24rem;
@@ -930,8 +939,15 @@ content .head .searchBox .choiceCity .city-ok {
 content .head .searchBox .choiceCity .city-ok a {
   padding: 0 0.06rem;
   margin: 0 0.03rem;
-  background: #e8e8e8;
   border: 1px solid #dddddd;
+  border-radius: 0.02rem;
+}
+content .head .searchBox .choiceCity .city-ok a.ok {
+  background: #1d77c7;
+  color: #ffffff;
+}
+content .head .searchBox .choiceCity .city-ok a.cancel {
+  background: #e8e8e8;
   color: #000000;
 }
 content .head .searchBox .choiceCity .city-menu {
