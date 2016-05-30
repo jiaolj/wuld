@@ -210,7 +210,13 @@ var Base = (function(){
 		},
 		rData : function(d,j){
 			var obj = this;
-			return d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.likers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
+			d = d.replace('#ctime',Base.tools.past_time(j.ctime)).replace('#user_id',j.user_id).replace('#ii',j.id).replace('#id',j.id).replace('#id',j.id).replace('#headimgurl',j.user_info[0] && j.user_info[0].headimgurl).replace('#nickname',j.user_info[0] && j.user_info[0].nickname).replace('#content',Base.tools.sub(j.content,200)).replace('#pictures',_config.blog.tools.getImages(j.pictures,j.id)).replace('#view_num',j.view_num).replace('#viewers',_config.blog.tools.getViewers(j.likers)).replace('#like_num',j.like_num).replace('#comment_num',j.comment_num);
+			if(j.page_id[0]){
+				d = d.replace('#vip','').replace('#viewCard','').replace('#page_id',j.page_id[0].id);
+			}else{
+				d = d.replace('#vip',' hide').replace('#viewCard',' hide');
+			}
+			return d;
 		},
 		bind : function(obj){
 			obj.find('img.openBlog').click(function(){
@@ -241,6 +247,11 @@ var Base = (function(){
 						}
 					}
 				})
+			})
+			obj.find('span.viewCard').click(function(){
+				_req.card_id = $(this).attr('page_id');
+				_config.active = 'detail';
+				_obj.location(_config.active+'&card_id='+_req.card_id);
 			})
 			/*obj.find('dt').last().find('a.click').click(function(){
 				var o = $(this),
@@ -378,21 +389,6 @@ var Base = (function(){
 						}
 						$('#contents').html(cnt);
 					}
-					//留言
-					var mc = dd.message_count,
-						msgs = dd.messages;
-					$('#viewNum').text(mc);
-					$('#dtail').html(function(){
-						var htm = '',
-							tmp = _config.detail.leaveDom;
-						for(var k in msgs) {
-							var m = msgs[k];
-							htm += tmp.replace('#message',m.message).replace('#ctime',_obj.tools.int_to_str(m.ctime)).replace('#headimgurl',m.user_info[0].headimgurl).replace('#nickname',m.user_info[0].nickname);
-						}
-						return htm;
-					});
-					$('#dtail>dt').gt(0).hide();
-					$('#stars').html(getStar(mc));
 					$('.jsLoad').removeClass('hide');
 				},
 				error:function(jqXHR,textStatus) {

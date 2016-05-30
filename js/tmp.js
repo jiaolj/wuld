@@ -32,12 +32,12 @@ var Tmp = {
 	',
 	blog : '\
 		<dt did="#id"> \
-			<div class="photo flt"><img class="logo" src="#headimgurl" /><img class="vip" src="img/blog/vip.png" /></div> \
+			<div class="photo flt"><img class="logo" src="#headimgurl" /><img class="vip#vip" src="img/blog/vip.png" /></div> \
 			<div class="tit flt"> \
 				<p>#nickname</p> \
 				<p class="time">#ctime</p> \
 			</div> \
-			<br class="cb"/> <span class="viewCard">查看名片</span>\
+			<br class="cb"/> <span class="viewCard#viewCard" page_id="#page_id">查看名片</span>\
 			<div class="text">\
 				<div class="title">#content</div> \
 				<div class="img" i="#ii">#pictures</div> \
