@@ -6,6 +6,23 @@ var Base = (function(){
 			var s = n.split(' ');
 			return s[1] || s[0]
 		},
+		_hotClick = function(id){ //推荐
+			if(!id) return false;
+			$.ajax({
+				url : "/hot",
+				data : {id:id},
+				success : function(res){
+					res = $.parseJSON(res);
+					if( res.status == 'y'){
+						alert( res.info );
+					}else{
+						if( res.info  != '对不起，该会员未通过VIP认证，不能推荐！' ){
+							alert( res.info );
+						}
+					}
+				}
+			})
+		},
 		_get = function(){
 			var name = _getCity(_city.name),
 				start = _getCity(_city.start),
@@ -355,6 +372,23 @@ var Base = (function(){
 			$('a.back').click(function(){
 				_config.active = 'index';
 				_obj.location(_config.active);
+			})
+			$('#vote').click(function(){
+				_hotClick(_req.card_id);
+				return;
+				$.ajax({
+					url: '/page/support',
+					data: {page_id:_req.card_id},
+					dataType: 'json',
+					success : function(dd) {
+						if(dd.info=='不能重复支持'){
+							alert('亲，您已经推荐过了！');
+						}else{
+							alert(dd.info);
+							_hotClick(_req.card_id);
+						}
+					}
+				})
 			})
 			$.ajax({
 				url: '/detail2/'+_req.card_id,
