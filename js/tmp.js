@@ -35,7 +35,7 @@ var Tmp = {
 			<div class="photo flt"><img class="logo" src="#headimgurl" /><img class="vip#vip" src="img/blog/vip.png" /></div> \
 			<div class="tit flt"> \
 				<p>#nickname</p> \
-				<p class="time">#ctime</p> \
+				<p class="time"></p> \
 			</div> \
 			<br class="cb"/> <span class="viewCard#viewCard" page_id="#page_id">查看名片</span>\
 			<div class="text">\
@@ -52,5 +52,5 @@ var Tmp = {
 				</div> \
 			</div> \
 		</dt>\
-	'//<a tp="talk"><img class="left" src="img/blog/talk.png" /><span d="#comment_num">评论</span></a>\
+	'//#ctime<a tp="talk"><img class="left" src="img/blog/talk.png" /><span d="#comment_num">评论</span></a>\
 }
